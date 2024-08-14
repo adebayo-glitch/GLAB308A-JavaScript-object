@@ -18,3 +18,11 @@ const adventurer = {
     },
   };
   
+  // loop through inventory
+  for (let item of adventurer.inventory) {
+    console.log(item);
+  }
+  
+  // call roll method
+  adventurer.roll();
+  adventurer.roll(5);
