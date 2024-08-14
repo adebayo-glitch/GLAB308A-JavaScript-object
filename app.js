@@ -56,4 +56,45 @@ class Character {
   robin.companion.roll();
   robin.companion.companion.roll();
 
- 
+  // Part 3
+  class Adventurer extends Character {
+    constructor(name, role) {
+      super(name);
+      this.role = role;
+      this.inventory.push("bedroll", "50 gold coins");
+    }
+  
+    scout() {
+      console.log(`${this.name} is scouting ahead...`);
+      super.roll();
+    }
+
+    // Additional method
+    sleep() {
+        console.log(`${this.name} is sleeping.`);
+        this.health = Math.min(100, this.health + 10);
+      }
+  }
+  
+  class Companion extends Character {
+    constructor(name, type) {
+      super(name);
+      this.type = type;
+    }
+
+    // Companion specific method
+    comfort(character) {
+        console.log(`${this.name} the ${this.type} comforts ${character.name}.`);
+        character.health = Math.min(100, character.health + 5);
+    }
+  }
+  
+  const robinAdventurer = new Adventurer("Robin", "Fighter");
+  robinAdventurer.inventory.push("sword", "potion", "artifact");
+  robinAdventurer.companion = new Companion("Leo", "Cat");
+  robinAdventurer.companion.companion = new Companion("Frank", "Flea");
+  robinAdventurer.companion.companion.inventory = ["small hat", "sunglasses"];
+  
+  // run the scout method
+  robinAdventurer.scout();
+  robinAdventurer.sleep();
